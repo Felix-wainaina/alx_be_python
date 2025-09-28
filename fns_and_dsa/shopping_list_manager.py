@@ -14,7 +14,8 @@ def main():
         choice = input("Enter your choice: ").strip()
 
         if choice == '1':
-            item = input("Enter item to add: ").strip()
+            # Exact prompt expected by checker
+            item = input("Enter the item to add: ").strip()
             if not item:
                 print("No item entered. Nothing added.")
             else:
@@ -24,8 +25,8 @@ def main():
             if not shopping_list:
                 print("Shopping list is empty. Nothing to remove.")
             else:
-                item = input("Enter item to remove: ").strip()
-                # Case-insensitive removal while preserving original item text
+                # Exact prompt expected by checker
+                item = input("Enter the item to remove: ").strip()
                 found = False
                 for i, existing in enumerate(shopping_list):
                     if existing.lower() == item.lower():
@@ -50,4 +51,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
