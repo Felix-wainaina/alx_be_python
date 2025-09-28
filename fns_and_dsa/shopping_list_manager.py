@@ -1,53 +1,53 @@
-#!/usr/bin/python3
-"""
-A simple shopping list manager using a Python list.
-"""
+# fns_and_dsa/shopping_list_manager.py
 
 def display_menu():
-    """Prints the main menu for the user."""
-    print("\nShopping List Manager")
+    print("Shopping List Manager")
     print("1. Add Item")
     print("2. Remove Item")
     print("3. View List")
     print("4. Exit")
 
 def main():
-    """Main function to run the shopping list manager."""
     shopping_list = []
     while True:
         display_menu()
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice: ").strip()
 
         if choice == '1':
-            # Prompt for and add an item
-            item = input("Enter the item to add: ")
-            shopping_list.append(item)
-            print(f"'{item}' was added to the list.")
-
+            item = input("Enter item to add: ").strip()
+            if not item:
+                print("No item entered. Nothing added.")
+            else:
+                shopping_list.append(item)
+                print(f"'{item}' added to the shopping list.")
         elif choice == '2':
-            # Prompt for and remove an item
-            item = input("Enter the item to remove: ")
-            if item in shopping_list:
-                shopping_list.remove(item)
-                print(f"'{item}' was removed from the list.")
-            else:
-                print(f"'{item}' not found in the list.")
-
-        elif choice == '3':
-            # Display the shopping list
             if not shopping_list:
-                print("\nThe shopping list is empty.")
+                print("Shopping list is empty. Nothing to remove.")
             else:
-                print("\n--- Your Shopping List ---")
-                for i, item in enumerate(shopping_list, 1):
-                    print(f"{i}. {item}")
-                print("------------------------")
-
+                item = input("Enter item to remove: ").strip()
+                # Case-insensitive removal while preserving original item text
+                found = False
+                for i, existing in enumerate(shopping_list):
+                    if existing.lower() == item.lower():
+                        removed = shopping_list.pop(i)
+                        print(f"'{removed}' removed from the shopping list.")
+                        found = True
+                        break
+                if not found:
+                    print(f"Item '{item}' not found in the shopping list.")
+        elif choice == '3':
+            if not shopping_list:
+                print("Shopping list is empty.")
+            else:
+                print("Current shopping list:")
+                for idx, itm in enumerate(shopping_list, start=1):
+                    print(f"{idx}. {itm}")
         elif choice == '4':
             print("Goodbye!")
             break
         else:
-            print("Invalid choice. Please enter a number from 1 to 4.")
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
+
