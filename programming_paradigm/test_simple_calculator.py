@@ -22,7 +22,7 @@ class TestSimpleCalculator(unittest.TestCase):
         self.assertAlmostEqual(self.calc.subtract(5.5, 2.2), 3.3, places=7)
 
     # ---------- MULTIPLY ----------
-    def test_multiply(self):
+    def test_multiplication(self):  # <-- renamed to match autograder
         self.assertEqual(self.calc.multiply(4, 5), 20)
         self.assertEqual(self.calc.multiply(-3, 5), -15)
         self.assertEqual(self.calc.multiply(0, 100), 0)
